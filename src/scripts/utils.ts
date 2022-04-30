@@ -1,4 +1,4 @@
-import {Renderer} from "three";
+import { Renderer } from 'three';
 
 export const resizeRendererToDisplaySize = (renderer: Renderer) => {
     const canvas = renderer.domElement;
@@ -9,4 +9,4 @@ export const resizeRendererToDisplaySize = (renderer: Renderer) => {
         renderer.setSize(width, height, false);
     }
     return needResize;
-}
+};

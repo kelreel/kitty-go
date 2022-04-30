@@ -1,5 +1,5 @@
-import {BufferGeometry, Mesh, Scene} from "three";
-import * as Three from "three";
+import { BufferGeometry, Mesh, Scene } from 'three';
+import * as Three from 'three';
 
 interface BoxGeometryOptions {
     width?: number;
@@ -8,12 +8,12 @@ interface BoxGeometryOptions {
 }
 
 export const createBoxGeometry = (options?: BoxGeometryOptions) => {
-    const {width = 1, height = 1, depth = 1} = options || {};
+    const { width = 1, height = 1, depth = 1 } = options || {};
     return new Three.BoxGeometry(width, height, depth);
-}
+};
 
 export const createCubeInstance = (scene: Scene, geometry: BufferGeometry, color: number | string, x: number): Mesh => {
-    const material = new Three.MeshPhongMaterial({color});
+    const material = new Three.MeshPhongMaterial({ color });
 
     const cube = new Three.Mesh(geometry, material);
     scene.add(cube);
@@ -21,4 +21,4 @@ export const createCubeInstance = (scene: Scene, geometry: BufferGeometry, color
     cube.position.x = x;
 
     return cube;
-}
+};

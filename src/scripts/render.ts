@@ -1,5 +1,5 @@
-import {PerspectiveCamera, Renderer, Scene} from "three";
-import {resizeRendererToDisplaySize} from "./utils";
+import { PerspectiveCamera, Renderer, Scene } from 'three';
+import { resizeRendererToDisplaySize } from './utils';
 
 interface RenderConfig {
     renderer: Renderer;
@@ -19,19 +19,19 @@ export class RenderEngine {
     canvas: HTMLCanvasElement;
 
     public isRendering = false;
-    private _req: number = 0;
+    private _req = 0;
 
-    public storage: Record<string, any> = {};
+    public storage: Record<string, unknown> = {};
     public middlewares: Middleware[] = [];
 
-    constructor({renderer, camera, scene, canvas}: RenderConfig) {
+    constructor({ renderer, camera, scene, canvas }: RenderConfig) {
         this.canvas = canvas;
         this.renderer = renderer;
         this.camera = camera;
         this.scene = scene;
     }
 
-    private _render (ms: number) {
+    private _render(ms: number) {
         const time = ms * 0.001;
 
         if (resizeRendererToDisplaySize(this.renderer)) {
@@ -48,18 +48,17 @@ export class RenderEngine {
             fn(time);
         }
 
-
         this.renderer.render(this.scene, this.camera);
-        this._req = requestAnimationFrame(this._render.bind(this))
+        this._req = requestAnimationFrame(this._render.bind(this));
     }
 
-    public startRender () {
+    public startRender() {
         requestAnimationFrame(this._render.bind(this));
         this.isRendering = true;
     }
 
-    public stopRender () {
-        cancelAnimationFrame(this._req)
+    public stopRender() {
+        cancelAnimationFrame(this._req);
         this.isRendering = false;
     }
 }
